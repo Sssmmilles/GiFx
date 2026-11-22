@@ -1,4 +1,4 @@
-!GiFx/GiFxLogo.png
+![](GiFx/GiFxLogo_RM.png)
 
 GiFx is a gif editor
 
@@ -10,8 +10,4 @@ WIP
 
 
 
-
-
-
-
-- [CC-BY-4.0]
+- License: [CC BY 4.0](LICENSE)
