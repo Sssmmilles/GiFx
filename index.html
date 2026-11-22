@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="GiFx - a gif editor">
+  <title>GiFx</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-images" viewBox="0 0 24 24"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M3 14l4-4 4 4 3-3 3 3"/><path d="M7 21h11a3 3 0 0 0 3-3V8"/><circle cx="8" cy="8" r="1.4"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></symbol>
+    <symbol id="i-optimize" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+    <symbol id="i-resize" viewBox="0 0 24 24"><path d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/><rect x="9" y="9" width="6" height="6" rx="1"/></symbol>
+    <symbol id="i-crop" viewBox="0 0 24 24"><path d="M6 2v14a2 2 0 0 0 2 2h14M2 6h14a2 2 0 0 1 2 2v14"/></symbol>
+    <symbol id="i-censor" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 3l18 18"/><path d="M8 10h8M8 14h5"/></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6.7"/><path d="M20 5v6h-6"/></symbol>
+    <symbol id="i-reverse" viewBox="0 0 24 24"><path d="M4 7h13a4 4 0 0 1 0 8H9"/><path d="M8 4L4 7l4 3M16 12l-4 3 4 3"/></symbol>
+    <symbol id="i-speed" viewBox="0 0 24 24"><path d="M12 14l4-4"/><circle cx="12" cy="14" r="8"/><path d="M12 6V4M20 14h2M4 14H2M5 7L3.6 5.6M19 7l1.4-1.4"/></symbol>
+    <symbol id="i-effects" viewBox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></symbol>
+    <symbol id="i-split" viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="8" rx="1"/><rect x="13" y="4" width="8" height="8" rx="1"/><rect x="3" y="14" width="8" height="6" rx="1"/><rect x="13" y="14" width="8" height="6" rx="1"/></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 6V4h16v2M12 4v16M8 20h8"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 17V5M7 9l5-5 5 5M4 20h16"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-1 5"/><path d="M20 5v6h-6"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 8a4 4 0 0 1 0 8M19.5 5.5a7.5 7.5 0 0 1 0 13"/></symbol>
+    <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 8.5L20 20M8.5 15.5L20 4"/></symbol>
+    <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.5a2 2 0 0 0 1.6-3.2 1.8 1.8 0 0 1 1.4-2.9H19a3 3 0 0 0 3-3A9 9 0 0 0 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="15" cy="8" r="1"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.1 2.1-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-3v-.2a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L6.6 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H5v-3h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L6.6 7 8.7 4.9l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V3h3v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L20.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v3h-.2a1.7 1.7 0 0 0-1.6 1z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+    <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/></symbol>
+    <symbol id="i-shape-rect" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="1"/></symbol>
+    <symbol id="i-shape-ellipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="8" ry="6"/></symbol>
+    <symbol id="i-shape-heart" viewBox="0 0 24 24"><path d="M12 20C5 15.5 3 12.5 3 9.5 3 7 5 5.5 7.2 5.5c1.8 0 3.3 1 3.8 2.5.5-1.5 2-2.5 3.8-2.5C17 5.5 19 7 19 9.5c0 3-2 6-7 10.5z"/></symbol>
+    <symbol id="i-shape-drop" viewBox="0 0 24 24"><path d="M12 3c3.2 4 6 7.2 6 10.5A6 6 0 0 1 6 13.5C6 10.2 8.8 7 12 3z"/></symbol>
+    <symbol id="i-shape-star" viewBox="0 0 24 24"><path d="M12 3l2.6 6 6.4.6-4.9 4.4 1.4 6.5L12 17.2 6.5 20.5l1.4-6.5L3 9.6 9.4 9z"/></symbol>
+    <symbol id="i-shape-triangle" viewBox="0 0 24 24"><path d="M12 4l8 15H4z"/></symbol>
+    <symbol id="i-shape-diamond" viewBox="0 0 24 24"><path d="M12 3l8 9-8 9-8-9z"/></symbol>
+    <symbol id="i-shape-hexagon" viewBox="0 0 24 24"><path d="M8 4h8l4 8-4 8H8l-4-8z"/></symbol>
+    <symbol id="i-shape-cross" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+    <symbol id="i-shape-arrow" viewBox="0 0 24 24"><path d="M12 3l6 6h-3v9H9V9H6z"/></symbol>
+  </svg>
+
+  <div class="splash" id="splash" hidden aria-hidden="true">
+    <img id="demo-gif" alt="">
+    <div class="splash-loader" id="splash-loader" aria-hidden="true"></div>
+  </div>
+
+  <main class="app">
+    <div class="checker-board" id="checker-board" aria-hidden="true"></div>
+    <div class="app-layout">
+      <aside class="tool-rail" id="tool-rail" aria-label="Инструменты">
+        <span class="rail-title" data-i18n="tools">Инструменты</span>
+        <div class="rail-scroll-wrap">
+          <div class="rail-list" id="ws-tools-list"></div>
+        </div>
+        <div class="rail-bottom">
+          <div class="recent-block" id="recent-block">
+            <button class="recent-head" id="recent-toggle" type="button" aria-expanded="false" title="Недавние файлы" data-i18n-title="recentFiles">
+              <svg class="icon"><use href="#i-clock"></use></svg>
+              <span class="rail-title" data-i18n="recent">Недавние</span>
+              <span class="recent-chevron" id="recent-chevron">›</span>
+            </button>
+            <div class="recent-content" id="recent-content" aria-hidden="true">
+              <div class="recent-list" id="recent-list"></div>
+              <div class="project-actions">
+                <button class="rail-mini" id="save-project" type="button">Сохранить проект</button>
+                <button class="rail-mini" id="open-project" type="button">Открыть проект</button>
+                <button class="rail-mini" id="export-project" type="button">Экспорт .json</button>
+                <button class="rail-mini" id="import-project" type="button">Импорт .json</button>
+              </div>
+            </div>
+          </div>
+          <div class="theme-block" id="theme-block">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-expanded="false" title="Настройки" data-i18n-title="settings">
+              <svg class="icon"><use href="#i-sliders"></use></svg>
+              <span class="rail-title" id="theme-label" data-i18n="settings">Настройки</span>
+              <span class="theme-chevron" id="theme-chevron">›</span>
+            </button>
+            <div class="theme-panel" id="theme-panel" hidden>
+              <span class="rail-title theme-subtitle" data-i18n="themeTitle">Theme</span>
+              <label class="theme-custom" for="accent-color">
+                <span data-i18n="accentColor">Цвет интерфейса</span>
+                <input type="text" id="accent-hex" maxlength="7" value="#303030" aria-label="HEX-код цвета интерфейса">
+                <input type="color" id="accent-color" value="#303030">
+              </label>
+              <div class="theme-swatches" id="theme-swatches">
+                <button type="button" class="theme-swatch" data-color="#303030" style="--swatch:#303030" title="Графит"></button>
+                <button type="button" class="theme-swatch" data-color="#7f5be1" style="--swatch:#7f5be1" title="Фиолет"></button>
+                <button type="button" class="theme-swatch" data-color="#c2649c" style="--swatch:#c2649c" title="Розовый"></button>
+                <button type="button" class="theme-swatch" data-color="#3f9e78" style="--swatch:#3f9e78" title="Зелёный"></button>
+                <button type="button" class="theme-swatch" data-color="#d08a3e" style="--swatch:#d08a3e" title="Янтарный"></button>
+                <button type="button" class="theme-swatch" data-color="#d94a4a" style="--swatch:#d94a4a" title="Красный"></button>
+                <button type="button" class="theme-swatch" data-color="#3aa7c4" style="--swatch:#3aa7c4" title="Голубой"></button>
+              </div>
+              <label class="theme-custom" for="bg-color">
+                <span data-i18n="backgroundColor">Фон интерфейса</span>
+                <input type="text" id="bg-hex" maxlength="7" value="#000000" aria-label="HEX-код фона интерфейса">
+                <input type="color" id="bg-color" value="#000000">
+              </label>
+              <div class="theme-swatches bg-swatches" id="bg-swatches">
+                <button type="button" class="theme-swatch" data-color="#000000" style="--swatch:#000000" title="Чёрный"></button>
+                <button type="button" class="theme-swatch" data-color="#121212" style="--swatch:#121212" title="Графит"></button>
+                <button type="button" class="theme-swatch" data-color="#07070e" style="--swatch:#07070e" title="Ночной"></button>
+                <button type="button" class="theme-swatch" data-color="#130c07" style="--swatch:#130c07" title="Тёмно-коричневый"></button>
+                <button type="button" class="theme-swatch" data-color="#060719" style="--swatch:#060719" title="Тёмно-синий"></button>
+                <button type="button" class="theme-swatch" data-color="#070e0c" style="--swatch:#070e0c" title="Тёмно-зелёный"></button>
+                <button type="button" class="theme-swatch" data-color="#181606" style="--swatch:#181606" title="Тёмно-оливковый"></button>
+              </div>
+              <div class="theme-swatches bg-swatches" id="bg-swatches-light">
+                <button type="button" class="theme-swatch" data-color="#f4f4f4" style="--swatch:#f4f4f4" title="Белый"></button>
+                <button type="button" class="theme-swatch" data-color="#ffc2c2" style="--swatch:#ffc2c2" title="Светло-розовый"></button>
+                <button type="button" class="theme-swatch" data-color="#fcccff" style="--swatch:#fcccff" title="Розовый"></button>
+                <button type="button" class="theme-swatch" data-color="#d1f0ff" style="--swatch:#d1f0ff" title="Голубой"></button>
+                <button type="button" class="theme-swatch" data-color="#e3ccff" style="--swatch:#e3ccff" title="Лаванда"></button>
+                <button type="button" class="theme-swatch" data-color="#ccffcd" style="--swatch:#ccffcd" title="Мятный"></button>
+                <button type="button" class="theme-swatch" data-color="#fff7cc" style="--swatch:#fff7cc" title="Кремовый"></button>
+              </div>
+              <span class="rail-title theme-subtitle" data-i18n="radiusTitle">Radius</span>
+              <div class="corner-options" id="corner-options">
+                <button type="button" class="rail-mini" data-corner="blocky">blocky</button>
+                <button type="button" class="rail-mini" data-corner="default">default</button>
+                <button type="button" class="rail-mini" data-corner="rounded">rounded</button>
+              </div>
+              <div class="settings-extra">
+                <span class="rail-title theme-subtitle" data-i18n="mediaTitle">Медиа</span>
+                <div class="default-gif">
+                  <button class="theme-preset default-gif-toggle" id="default-gif-toggle" type="button" aria-pressed="true">
+                    <svg class="icon"><use href="#i-palette"></use></svg>
+                    <span id="default-gif-toggle-label">Гифка по умолчанию: вкл</span>
+                  </button>
+                  <div class="default-gif-row">
+                    <img id="default-gif-preview" src="assets/example.gif" alt="">
+                    <div class="default-gif-actions">
+                      <button class="rail-mini" id="default-gif-pick" type="button" data-i18n="pickGif">Выбрать</button>
+                      <button class="rail-mini" id="default-gif-reset" type="button" data-i18n="resetGif">Сбросить</button>
+                    </div>
+                  </div>
+                  <input type="file" id="default-gif-input" accept="image/gif,.gif" hidden>
+                </div>
+                <div class="default-gif">
+                  <button class="theme-preset default-gif-toggle" id="splash-toggle" type="button" aria-pressed="true">
+                    <svg class="icon"><use href="#i-video"></use></svg>
+                    <span id="splash-toggle-label">Заставка: вкл</span>
+                  </button>
+                  <div class="default-gif-row">
+                    <img id="splash-gif-preview" src="assets/example.gif" alt="">
+                    <div class="default-gif-actions">
+                      <button class="rail-mini" id="splash-gif-pick" type="button" data-i18n="pickSplash">Загрузить</button>
+                      <button class="rail-mini" id="splash-gif-reset" type="button" data-i18n="resetSplash">Сбросить</button>
+                    </div>
+                  </div>
+                  <input type="file" id="splash-gif-input" accept="image/*,.gif" hidden>
+                </div>
+                <span class="rail-title theme-subtitle" data-i18n="screenTitle">Screen</span>
+                <div class="ws-width-options" id="ws-width-options">
+                  <button type="button" class="rail-mini" data-ws-width="800px">800</button>
+                  <button type="button" class="rail-mini" data-ws-width="1000px">1000</button>
+                  <button type="button" class="rail-mini" data-ws-width="1200px">1200</button>
+                  <button type="button" class="rail-mini" data-ws-width="1400px">1400</button>
+                  <button type="button" class="rail-mini" data-ws-width="100%">100%</button>
+                </div>
+                <span class="rail-title theme-subtitle" data-i18n="settingsTitle">Settings</span>
+                <button class="theme-preset lang-btn" id="lang-toggle" type="button">
+                  <svg class="icon"><use href="#i-globe"></use></svg>
+                  <span id="lang-label" data-i18n="langLabel">Язык: Русский</span>
+                </button>
+                <button class="theme-preset default-gif-toggle" id="scrollbar-toggle" type="button" aria-pressed="true">
+                  <svg class="icon"><use href="#i-sliders"></use></svg>
+                  <span id="scrollbar-toggle-label">Скроллбар: вкл</span>
+                </button>
+              </div>
+              <button class="rail-mini theme-reset" id="theme-color-reset" type="button" data-i18n="reset">Сбросить</button>
+            </div>
+          </div>
+          <input type="file" id="project-file-input" accept=".json,application/json" hidden>
+        </div>
+        <div class="rail-resizer" id="rail-resizer" title="Тяните, чтобы изменить ширину"></div>
+      </aside>
+
+      <section class="workspace" id="workspace">
+        <div class="history-floating" id="history-floating">
+          <button class="rail-mini" id="undo-btn" type="button" title="Отменить">Отменить</button>
+          <button class="rail-mini" id="redo-btn" type="button" title="Повторить">Повторить</button>
+        </div>
+
+        <div class="ws-main">
+          <div class="step-card" id="step-upload">
+            <div class="step-title"><span class="step-num">1</span><h2>Файлы</h2></div>
+            <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Выбрать или перетащить файлы">
+              <div class="dropzone-icon"><svg class="icon"><use href="#i-upload"></use></svg></div>
+              <strong id="dropzone-title">Перетащите файлы сюда</strong>
+              <span>или нажмите, чтобы выбрать на компьютере</span>
+              <span class="dropzone-formats" id="dropzone-formats"></span>
+            </div>
+            <input id="file-input" type="file" hidden>
+            <div class="selection-bar" id="selection-bar" hidden>
+              <span>Кадры:</span>
+              <button class="rail-mini" type="button" data-select="all">Все</button>
+              <button class="rail-mini" type="button" data-select="none">Снять</button>
+              <label>от <span class="num-field">
+                <input type="number" id="sel-from" min="1" value="1">
+                <span class="num-buttons">
+                  <button type="button" data-step="up" data-target="sel-from" aria-label="Увеличить">▴</button>
+                  <button type="button" data-step="down" data-target="sel-from" aria-label="Уменьшить">▾</button>
+                </span>
+              </span></label>
+              <label>до <span class="num-field">
+                <input type="number" id="sel-to" min="1" value="1">
+                <span class="num-buttons">
+                  <button type="button" data-step="up" data-target="sel-to" aria-label="Увеличить">▴</button>
+                  <button type="button" data-step="down" data-target="sel-to" aria-label="Уменьшить">▾</button>
+                </span>
+              </span></label>
+              <button class="rail-mini" id="sel-range" type="button">Выбрать</button>
+              <label class="only-selected" for="only-selected">
+                <input type="checkbox" id="only-selected">
+                <span class="only-switch" aria-hidden="true"></span>
+                <span>только выбранные</span>
+              </label>
+              <span id="sel-count">0</span>
+            </div>
+            <div class="filmstrip" id="filmstrip" hidden></div>
+            <div class="source-preview" id="source-preview" hidden></div>
+          </div>
+
+          <div class="step-card" id="step-options" hidden>
+            <div class="step-title"><span class="step-num">2</span><h2>Настройки</h2></div>
+            <div class="options-grid" id="options"></div>
+            <div id="extra-ui"></div>
+            <div class="run-row">
+              <button class="btn btn-primary" id="run-btn" type="button">
+                <svg class="icon"><use href="#i-zap"></use></svg>
+                <span id="run-label">Готово</span>
+              </button>
+              <button class="btn btn-ghost" id="reset-btn" type="button">
+                <svg class="icon"><use href="#i-refresh"></use></svg> Сбросить
+              </button>
+            </div>
+            <div class="progress-wrap" id="progress-wrap">
+              <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+              <span class="progress-dot" id="progress-dot" aria-hidden="true"></span>
+            </div>
+            <p class="error-box" id="error-box" hidden></p>
+          </div>
+
+          <div class="step-card" id="step-result" hidden>
+            <div class="step-title"><span class="step-num success">✓</span><h2>Готово</h2></div>
+            <div class="result-layout">
+              <div class="result-preview" id="result-preview"></div>
+              <div class="result-side">
+                <div class="result-stats" id="result-stats"></div>
+                <button class="btn btn-primary btn-block" id="download-btn" type="button">
+                  <svg class="icon"><use href="#i-download"></use></svg>
+                  <span id="download-label">Скачать GIF</span>
+                </button>
+                <button class="btn btn-ghost btn-block" id="again-btn" type="button">Вернуться к настройкам</button>
+              </div>
+            </div>
+            <div class="continue-block" id="continue-block" hidden>
+              <span class="continue-title">Продолжить редактировать</span>
+              <div class="continue-list" id="continue-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="mobile-dock-backdrop" id="mobile-dock-backdrop" aria-hidden="true"></div>
+  <div class="mobile-dock" id="mobile-dock">
+    <button class="mobile-dock-bar" id="mobile-dock-toggle" type="button" aria-expanded="false" aria-controls="mobile-dock-sheet">
+      <span class="mobile-dock-grip" aria-hidden="true"></span>
+      <svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg>
+      <span class="mobile-dock-current" id="mobile-dock-current" data-i18n="tools">Инструменты</span>
+      <svg class="mobile-dock-arrow" aria-hidden="true"><use href="#i-chevron-up"></use></svg>
+    </button>
+    <div class="mobile-dock-sheet" id="mobile-dock-sheet" aria-hidden="true">
+      <div class="mobile-dock-sheet-head">
+        <strong data-i18n="tools">Инструменты</strong>
+        <button class="rail-mini" id="mobile-dock-close" type="button" data-i18n="close">Закрыть</button>
+      </div>
+      <div class="mobile-rail-slot" id="mobile-rail-slot"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal-overlay" id="palette-overlay" hidden>
+    <div class="palette" role="dialog" aria-modal="true" aria-label="Командная палитра">
+      <div class="palette-search">
+        <svg class="icon"><use href="#i-search"></use></svg>
+        <input type="text" id="palette-input" placeholder="Найти инструмент или команду…" autocomplete="off" spellcheck="false">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="palette-list" id="palette-list"></div>
+      <div class="palette-foot"><span>↑ ↓ — выбрать</span><span>Enter — открыть</span><span>Совет: нажмите <kbd>?</kbd> для списка клавиш</span></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="shortcuts-overlay" hidden>
+    <div class="shortcuts-dialog" role="dialog" aria-modal="true" aria-label="Горячие клавиши">
+      <div class="shortcuts-head">
+        <h2>Горячие клавиши</h2>
+        <button class="rail-mini" id="shortcuts-close" type="button">Закрыть</button>
+      </div>
+      <div class="shortcuts-grid">
+        <div><kbd>Ctrl</kbd> + <kbd>K</kbd></div><span>Командная палитра</span>
+        <div><kbd>Ctrl</kbd> + <kbd>Z</kbd></div><span>Отменить действие</span>
+        <div><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd></div><span>Повторить действие</span>
+        <div><kbd>Ctrl</kbd> + <kbd>Y</kbd></div><span>Повторить действие</span>
+        <div><kbd>Ctrl</kbd> + <kbd>Enter</kbd></div><span>Запустить инструмент</span>
+        <div><kbd>Ctrl</kbd> + <kbd>S</kbd></div><span>Скачать результат</span>
+        <div><kbd>Delete</kbd></div><span>Удалить выбранные кадры</span>
+        <div><kbd>Esc</kbd></div><span>Снять выделение / закрыть окно</span>
+        <div><kbd>?</kbd></div><span>Эта справка</span>
+      </div>
+      <p class="shortcuts-note">Клик — один кадр, <kbd>Shift</kbd> — диапазон, <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> — добавить или убрать кадр.</p>
+    </div>
+  </div>
+
+  <script src="vendor/gifenc.js"></script>
+  <script src="vendor/gifuct.js"></script>
+  <script src="vendor/jszip.min.js"></script>
+  <script src="js/default-gif.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
